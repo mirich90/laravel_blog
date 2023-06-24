@@ -1,0 +1,15 @@
+body {
+    background: white;
+}
+nav {
+    margin-bottom: 15px;
+}
+.card {
+    margin-bottom: 10px;
+}
+.card-img {
+    height: 200px;
+    background-position: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
