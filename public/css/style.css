@@ -13,3 +13,6 @@ nav {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.card-img__max {
+    height: 500px;
+}
