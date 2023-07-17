@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout', ['title' => $post->title])
 
 @section('content')
 
@@ -15,7 +15,20 @@
                     <div class="card-img card-img__max" style="background-image: url({{ $post->img ?? asset('img/default.webp') }})"></div>
                     <p>{{ $post->descr }}</p>
 
-                    <a href="{{ route('post.index') }}" class="btn btn-outline-primary">На главную</a>
+                    <div class="card-btn">
+                        <a href="{{ route('post.index') }}" class="btn btn-outline-primary">
+                            На главную
+                        </a>
+                        <a href="{{ route('post.edit', ['id'=>$post->post_id]) }}" class="btn btn-outline-success">
+                            Редактировать
+                        </a>
+                        <form action="{{ route('post.destroy', ['id'=>$post->post_id]) }}" method="post" onsubmit="if (confirm('Точно удалить пост?')) { return true} else {return false}">
+                            @csrf
+                            @method('DELETE')
+
+                            <input type="submit" class="btn btn-outline-danger" value="Удалить">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
