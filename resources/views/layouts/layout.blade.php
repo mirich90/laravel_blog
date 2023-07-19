@@ -38,13 +38,14 @@
     </nav>
 
     <div class="container">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                @include('posts.parts.message_errors')
+            @endforeach
+        @endif
+            
         @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            @include('posts.parts.message_success')
         @endif
 
         @yield('content')
