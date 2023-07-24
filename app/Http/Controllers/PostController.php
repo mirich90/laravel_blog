@@ -141,7 +141,7 @@ class PostController extends Controller
         }
 
         $post->update();
-        $id =  $post->post_id;
+        $id = $post->post_id;
         return redirect()->route('post.show', compact('id'))->with('success', 'Пост успешно отредактирован');
     }
 

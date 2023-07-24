@@ -13,30 +13,34 @@
     @endif
 
     <div class="row">
+        @if(count($posts) > 0)
 
-        @foreach($posts as $post)
+            @foreach($posts as $post)
 
-        <div class="col-6">
-            <div class="card">
-                <div class="card-header">
-                    <h2>{{ $post->short_title }}</h2>
-                    <div class="card-author">Автор: {{ $post->name }}</div>
-                </div>
-                <div class="card-body">
-                    <div class="card-img" style="background-image: url({{ $post->img ?? asset('img/default.webp') }})"></div>
-                    <p>{{ $post->descr }}</p>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>{{ $post->short_title }}</h2>
+                        <div class="card-author">Автор: {{ $post->name }}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-img" style="background-image: url({{ $post->img ?? asset('img/default.webp') }})"></div>
+                        <p><?= $post->descr ?></p>
 
-                    <a href="{{ route('post.show', ['id' => $post->post_id]) }}" class="btn btn-outline-primary">Посмотреть пост</a>
+                        <a href="{{ route('post.show', ['id' => $post->post_id]) }}" class="btn btn-outline-primary">Посмотреть пост</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        @endforeach()
+            @endforeach()
+        @else
+            <h2>Постов пока нет</h2>
+        @endif
 
     </div>
 
     @if(!isset($_GET['search']))
-    {{ $posts->links() }}
+    {{-- {{ $posts->links() }} --}}
     @endif
 
 @endsection

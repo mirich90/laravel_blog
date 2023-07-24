@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class PostTag extends Model
 {
-    protected $table = 'posts';
+    protected $table = 'post_tags';
     protected $guarded = false;
-    protected $primaryKey = 'post_id';
 }

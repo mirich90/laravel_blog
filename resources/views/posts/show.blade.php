@@ -13,7 +13,8 @@
                 </div>
                 <div class="card-body">
                     <div class="card-img card-img__max" style="background-image: url({{ $post->img ?? asset('img/default.webp') }})"></div>
-                    <p>{{ $post->descr }}</p>
+
+                    <div class="trix-content"><?= $post->descr ?></div>
 
                     <div class="card-btn">
                         <a href="{{ route('post.index') }}" class="btn btn-outline-primary">На главную</a>
