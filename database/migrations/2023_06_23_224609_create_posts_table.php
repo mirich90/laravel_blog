@@ -14,7 +14,7 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('post_id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->string('title');
@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->string('img')->nullable();
             $table->text('descr');
             $table->timestamps();
+
+            $table->softDeletes();
         });
 
         Schema::table('posts', function ($table) {
@@ -37,6 +39,8 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

@@ -27,20 +27,18 @@
                         <div class="card-img" style="background-image: url({{ $post->img ?? asset('img/default.webp') }})"></div>
                         <p><?= $post->descr ?></p>
 
-                        <a href="{{ route('post.show', ['id' => $post->post_id]) }}" class="btn btn-outline-primary">Посмотреть пост</a>
+                        <a href="{{ route('post.show', $post->id) }}" class="btn btn-outline-primary">Посмотреть пост</a>
                     </div>
                 </div>
             </div>
 
-            @endforeach()
+            @endforeach
         @else
             <h2>Постов пока нет</h2>
         @endif
 
     </div>
 
-    @if(!isset($_GET['search']))
-        {{ $posts->links() }}
-    @endif
+    {{ $posts->links() }}
 
 @endsection

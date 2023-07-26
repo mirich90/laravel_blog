@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('post.create')}}">Создать пост</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('category.index')}}">Категории</a>
+                </li>
             </ul>
 
             <form class="d-flex" role="search" action="{{ route('post.index') }}">

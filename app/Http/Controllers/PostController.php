@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    private $paginate = 6;
+
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
@@ -28,13 +30,15 @@ class PostController extends Controller
                 ->orWhere('descr', 'like', '%' . $request->search . '%')
                 ->where('name', 'like', '%' . $request->search . '%')
                 ->orderBy('posts.created_at', 'desc')
-                ->get();
+                ->select('posts.*', 'users.*', 'posts.id as id')
+                ->paginate($this->paginate);
             return view('posts.index', compact('posts'));
         }
         // $posts = Post::all();
         $posts = Post::join('users', 'author_id', '=', 'users.id')
             ->orderBy('posts.created_at', 'desc')
-            ->paginate(6);
+            ->select('posts.*', 'users.*', 'posts.id as id')
+            ->paginate($this->paginate);
         return view('posts.index', compact('posts'));
     }
 
@@ -81,7 +85,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::join('users', 'author_id', '=', 'users.id')->find($id);
+        $post = Post::join('users', 'author_id', '=', 'users.id')
+            ->select('posts.*', 'users.*', 'posts.id as id')
+            ->find($id);
 
         if (!$post) {
             return redirect()->route('post.index')->withErrors('Данного поста не существует');
@@ -141,7 +147,7 @@ class PostController extends Controller
         }
 
         $post->update();
-        $id = $post->post_id;
+        $id = $post->id;
         return redirect()->route('post.show', compact('id'))->with('success', 'Пост успешно отредактирован');
     }
 

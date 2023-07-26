@@ -21,7 +21,7 @@ class CreatePostTagsTable extends Migration
         });
 
         Schema::table('post_tags', function ($table) {
-            $table->foreign('post_id')->references('post_id')->on('posts')->cascadeOnDelete();
+            $table->foreign('post_id')->references('id')->on('posts')->cascadeOnDelete();
             $table->foreign('tag_id')->references('id')->on('tags')->cascadeOnDelete();
         });
     }

@@ -1,7 +1,7 @@
 @extends('layouts.layout_create', ['title' => "Редактировать '$post->title'"])
 
 @section('content')
-    <form action="{{ route('post.update', ['id'=>$post->post_id])}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('post.update', ['id'=>$post->id])}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 

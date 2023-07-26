@@ -17,6 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +29,9 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        // Schema::dropIfExists('categories');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }
