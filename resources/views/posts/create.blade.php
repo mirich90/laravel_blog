@@ -7,7 +7,7 @@
         <h3>Создать пост</h3>
         @include('posts.parts.form')
 
-        <input type="submit" value="Создать пост" class="btn btn-outline-success">
+        <input type="submit" value="Создать пост" class="btn btn-primary">
     </form>
 
 @endsection

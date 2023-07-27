@@ -8,7 +8,8 @@
         <h3>Редактировать категорию</h3>
         @include('categories.parts.form')
 
-        <input type="submit" value="Редактировать категорию" class="btn btn-outline-success">
+        <input type="submit" value="Редактировать категорию" class="btn btn-primary">
+        <a href="{{ route('category.index') }}" class="btn btn-outline-danger">Отмена</a>
     </form>
 
 @endsection

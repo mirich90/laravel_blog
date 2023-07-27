@@ -8,6 +8,7 @@
     <title>{{$title}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/unpkg.com_trix@2.0.0_dist_trix.css') }}">
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">

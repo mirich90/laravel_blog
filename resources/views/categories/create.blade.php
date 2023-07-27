@@ -9,7 +9,7 @@
 
         @auth
             {{-- @if(Auth::user()->id == $post->author_id) --}}
-                <input type="submit" value="Создать категорию" class="btn btn-outline-success">
+                <input type="submit" value="Создать категорию" class="btn btn-primary">
             {{-- @endif --}}
 
         @endauth

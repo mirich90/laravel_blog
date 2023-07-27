@@ -13,7 +13,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Название</th>
-                        <th scope="col">Действие</th>
+                        <th scope="col" colspan="2">Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,8 +25,12 @@
                         <td>
                             @auth
                                 {{-- @if(Auth::user()->id == $category->author_id) --}}
-                                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-outline-success">Редактировать</a>
-                                
+                                <a href="{{ route('category.edit', $category->id) }}" class="btn"><i class="fa-solid fa-pencil-alt"></i></a>
+                            @endauth
+                        </td>
+
+                        <td>
+                            @auth    
                                 <form
                                     action="{{ route('category.destroy', $category->id) }}"
                                     method="POST"
@@ -35,7 +39,9 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="submit" class="btn btn-outline-danger" value="Удалить">
+                                    <button type="submit" class="border-0 bg-transparent">
+                                        <i class="fa-solid fa-trash text-danger"></i>
+                                    </button>
                                 </form>
                                 {{-- @endif --}}
 
@@ -54,7 +60,9 @@
     </div>
 
     <div class="row">
-        <a href="{{ route('category.create')}}" class="btn btn-outline-primary">Создать новую категорию</a>
+        <a href="{{ route('category.create')}}" class="btn btn-primary">
+            Создать новую категорию
+        </a>
     </div>
 </div>
 
