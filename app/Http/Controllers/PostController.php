@@ -89,7 +89,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::join('users', 'author_id', '=', 'users.id')
-            ->select('posts.*', 'users.*', 'posts.id as id')
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->select('posts.*', 'users.*', 'posts.id as id', 'categories.title as category')
             ->find($id);
 
         if (!$post) {
@@ -108,6 +109,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
 
         if ($post->author_id != \Auth::user()->id) {
             return redirect()->route('post.index')->withErrors('Вы не можете редактировать данный пост');
@@ -117,7 +119,7 @@ class PostController extends Controller
             return redirect()->route('post.index')->withErrors('Данного поста не существует');
         }
 
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
