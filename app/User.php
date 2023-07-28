@@ -16,13 +16,26 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $guarded = false;
 
+    const ROLE_ADMIN = 0;
+    const ROLE_MODERATOR = 1;
+    const ROLE_USER = 2;
+
+    public static function getRoles()
+    {
+        return [
+            self::ROLE_ADMIN => 'Админ',
+            self::ROLE_MODERATOR => 'Модератор',
+            self::ROLE_USER => 'Юзер',
+        ];
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     /**

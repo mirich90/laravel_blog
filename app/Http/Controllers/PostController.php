@@ -89,7 +89,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::join('users', 'author_id', '=', 'users.id')
-            ->join('categories', 'category_id', '=', 'categories.id')
+            ->leftJoin('categories', 'category_id', '=', 'categories.id')
             ->select('posts.*', 'users.*', 'posts.id as id', 'categories.title as category')
             ->find($id);
 

@@ -14,6 +14,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Логин</th>
                         <th scope="col">Эл.почта</th>
+                        <th scope="col">Роль</th>
                         <th scope="col">Пароль</th>
                         <th scope="col" colspan="2">Действия</th>
                     </tr>
@@ -25,6 +26,7 @@
                         <th scope="row">{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->role }}</td>
                         <td>{{ $user->password }}</td>
                         <td>
                             @auth

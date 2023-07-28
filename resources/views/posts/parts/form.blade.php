@@ -2,6 +2,7 @@
     <input name="title" type="text" placeholder="Заголовок поста" class="form-control" required value="{{ old('title') ??$post->title ?? '' }}">
 </div>
 
+@if (count($categories) > 0)
 <div class="form-group">
     <label for="">категория</label>
     
@@ -12,7 +13,9 @@
         </option>
         @endforeach
     </select>
-</div>
+</div>    
+@endif
+
 
 <div class="form-group">
     {{-- <textarea name="descr" class="form-control" rows="3" required>{{ old('descr') ??$post->descr ?? '' }}</textarea> --}}

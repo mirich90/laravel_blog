@@ -31,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = User::getRoles();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -45,6 +46,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->role = $request->role;
         $user->password = Hash::make($request->password);
 
         $user->save();
@@ -72,6 +74,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $roles = User::getRoles();
 
         // if ($category->author_id != \Auth::user()->id) {
         //     return redirect()->route('user.index')->withErrors('Вы не можете редактировать данный пост');
@@ -81,7 +84,7 @@ class UserController extends Controller
             return redirect()->route('user.index')->withErrors('Данного пользователя не существует');
         }
 
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -105,6 +108,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->role = $request->role;
         $user->password = Hash::make($request->password);
 
         $user->update();
