@@ -15,6 +15,7 @@ Route::get('/', 'PostController@index');
 
 Route::resource('/post', 'PostController');
 Route::resource('/category', 'CategoryController');
+Route::resource('/user', 'UserController');
 
 // Route::get('post/', 'PostController@index')->name('post.index');
 // Route::get('post/create', 'PostController@create')->name('post.create');
