@@ -17,29 +17,28 @@
 
         @foreach($posts as $post)
 
-        <div class="col-12">
-            <div class="card">
-                <div class="row g-0">
+        <div class="card mb-4">
+            <div class="row g-0">
 
-                    <a href="{{ route('post.show', $post->id) }}" class="col-md-6">
+                <div class="col-md-6 pe-auto ">
+                    <a href="{{ route('post.show', $post->id) }}">
                         <img src="{{ $post->img ?? asset('img/default.webp') }}" class="img-fluid rounded-start" alt="{{ $post->short_descr }}">
                     </a>
-
-                    <div class="col-md-6">
-                        <div class="card-body">
-                        <h2 class="card-title">{{ $post->title }}</h2>
-                        <p class="card-text"><?= $post->short_descr ?></p>
-                        <div class="row">
-                            <div class="card-author">{{ $post->name }}</div>
-
-                            <p class="card-text ml-auto"><small class="text-body-secondary">
-                                {{ $post->created_at->diffForHumans() }}
-                            </small></p>
-
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="col-md-6 card-body">
+                    <h2 class="card-title">{{ $post->title }}</h2>
+                    <p class="card-text"><?= $post->short_descr ?></p>
+                    
+                    <div class="d-flex justify-content-between">
+                        <div class="card-author">{{ $post->name }}</div>
+
+                        <p class="card-text"><small class="text-body-secondary">
+                            {{ $post->created_at->diffForHumans() }}
+                        </small></p>
+                    </div>
+                </div>
+
             </div>
         </div>
 

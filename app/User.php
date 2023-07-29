@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,28 @@ class User extends Authenticatable
     const ROLE_ADMIN = 0;
     const ROLE_MODERATOR = 1;
     const ROLE_USER = 2;
+
+    public static function isAdmin()
+    {
+        return Auth::user()->role == self::ROLE_ADMIN;
+    }
+
+    public static function isModerator()
+    {
+        return Auth::user()->role == self::ROLE_MODERATOR;
+    }
+
+    public static function isUser()
+    {
+        return Auth::user()->role == self::ROLE_USER;
+    }
+
+    public static function canEditPost($post_author_id)
+    {
+        return Auth::user()->id == $post_author_id ||
+            Auth::user()->isAdmin() ||
+            Auth::user()->isModerator();
+    }
 
     public static function getRoles()
     {

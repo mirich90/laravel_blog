@@ -21,7 +21,7 @@
             </ul>
 
             <form class="d-flex" role="search" action="{{ route('post.index') }}">
-                <input class="form-control me-2" name="search" type="search" placeholder="Найти пост..." aria-label="Search">
+                <input class="form-control me-2 mr-2" name="search" type="search" placeholder="Найти пост..." aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
 

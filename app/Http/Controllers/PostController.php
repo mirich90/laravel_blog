@@ -16,6 +16,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
+        // $this->middleware('admin')->except('index', 'show');
     }
 
     /**
@@ -66,7 +67,9 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->descr = $request->descr;
         $post->category_id = $request->category_id;
-        $post->short_descr = Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr;
+        $post->short_descr = strip_tags(
+            Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr
+        );
         $post->author_id = \Auth::user()->id;
         // dd($request->validated());
         if ($request->file('img')) {
@@ -111,7 +114,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $categories = Category::all();
 
-        if ($post->author_id != \Auth::user()->id) {
+        if (!\Auth::user()->canEditPost($post->author_id)) {
             return redirect()->route('post.index')->withErrors('Вы не можете редактировать данный пост');
         }
 
@@ -133,7 +136,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if ($post->author_id != \Auth::user()->id) {
+        if (!\Auth::user()->canEditPost($post->author_id)) {
             return redirect()->route('post.index')->withErrors('Вы не можете редактировать данный пост');
         }
 
@@ -142,7 +145,9 @@ class PostController extends Controller
         }
 
         $post->title = $request->title;
-        $post->short_descr = Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr;
+        $post->short_descr = strip_tags(
+            Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr
+        );
         $post->descr = $request->descr;
 
         if ($request->file('img')) {
@@ -166,7 +171,8 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if ($post->author_id != \Auth::user()->id) {
+        // if ($post->author_id != \Auth::user()->id) {
+        if (!\Auth::user()->canEditPost($post->author_id)) {
             return redirect()->route('post.index')->withErrors('Вы не можете удалить данный пост');
         }
 
