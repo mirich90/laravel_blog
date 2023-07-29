@@ -66,7 +66,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->descr = $request->descr;
         $post->category_id = $request->category_id;
-        $post->short_title = Str::length($request->title) > 30 ? Str::substr($request->title, 0, 30) . '...' : $request->title;
+        $post->short_descr = Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr;
         $post->author_id = \Auth::user()->id;
         // dd($request->validated());
         if ($request->file('img')) {
@@ -142,7 +142,7 @@ class PostController extends Controller
         }
 
         $post->title = $request->title;
-        $post->short_title = Str::length($request->title) > 30 ? Str::substr($request->title, 0, 30) . '...' : $request->title;
+        $post->short_descr = Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr;
         $post->descr = $request->descr;
 
         if ($request->file('img')) {

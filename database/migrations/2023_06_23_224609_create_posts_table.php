@@ -18,9 +18,9 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->string('title');
-            $table->string('short_title');
             $table->string('img')->nullable();
             $table->text('descr');
+            $table->text('short_descr');
             $table->timestamps();
 
             $table->softDeletes();

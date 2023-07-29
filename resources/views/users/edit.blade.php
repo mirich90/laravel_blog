@@ -8,7 +8,7 @@
         <h3>Редактировать данные пользователя</h3>
         @include('users.parts.form')
 
-        <input type="submit" value="Редактировать категорию" class="btn btn-primary">
+        <input type="submit" value="Редактировать данные пользователя" class="btn btn-primary">
         <a href="{{ route('user.index') }}" class="btn btn-outline-danger">Отмена</a>
     </form>
 

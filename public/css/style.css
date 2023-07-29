@@ -4,6 +4,10 @@ body {
 nav {
     margin-bottom: 15px;
 }
+.trix-content {
+    font-size: calc(1em + 0.5vw);
+    margin: 1.2rem auto;
+}
 .card {
     margin-bottom: 10px;
 }

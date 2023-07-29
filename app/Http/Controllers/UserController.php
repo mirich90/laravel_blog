@@ -113,7 +113,7 @@ class UserController extends Controller
 
         $user->update();
         $id = $user->id;
-        return redirect()->route('user.index', compact('id'))->with('success', 'Категория успешно отредактирована');
+        return redirect()->route('user.index', compact('id'))->with('success', 'Данные пользователя успешно отредактированы');
     }
 
     /**
