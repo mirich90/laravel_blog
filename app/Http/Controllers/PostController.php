@@ -26,13 +26,16 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+
+        $categories = Category::all();
+
         if ($request->category === "0") {
             $posts = Post::join('users', 'author_id', '=', 'users.id')
                 ->whereNull('category_id')
                 ->orderBy('posts.created_at', 'desc')
                 ->select('posts.*', 'users.*', 'posts.id as id')
                 ->paginate($this->paginate);
-            return view('posts.index', compact('posts'));
+            return view('posts.index', compact('posts', 'categories'));
         }
 
         if ($request->category) {
@@ -42,7 +45,7 @@ class PostController extends Controller
                 ->orderBy('posts.created_at', 'desc')
                 ->select('posts.*', 'users.*', 'posts.id as id')
                 ->paginate($this->paginate);
-            return view('posts.index', compact('posts', 'category'));
+            return view('posts.index', compact('posts', 'category', 'categories'));
         }
 
         if ($request->search) {
@@ -53,14 +56,14 @@ class PostController extends Controller
                 ->orderBy('posts.created_at', 'desc')
                 ->select('posts.*', 'users.*', 'posts.id as id')
                 ->paginate($this->paginate);
-            return view('posts.index', compact('posts'));
+            return view('posts.index', compact('posts', 'categories'));
         }
 
         $posts = Post::join('users', 'author_id', '=', 'users.id')
             ->orderBy('posts.created_at', 'desc')
             ->select('posts.*', 'users.*', 'posts.id as id')
             ->paginate($this->paginate);
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'categories'));
     }
 
     /**
