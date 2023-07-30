@@ -26,6 +26,25 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->category === "0") {
+            $posts = Post::join('users', 'author_id', '=', 'users.id')
+                ->whereNull('category_id')
+                ->orderBy('posts.created_at', 'desc')
+                ->select('posts.*', 'users.*', 'posts.id as id')
+                ->paginate($this->paginate);
+            return view('posts.index', compact('posts'));
+        }
+
+        if ($request->category) {
+            $category = Category::find($request->category);
+            $posts = Post::join('users', 'author_id', '=', 'users.id')
+                ->where('category_id', '=', $request->category)
+                ->orderBy('posts.created_at', 'desc')
+                ->select('posts.*', 'users.*', 'posts.id as id')
+                ->paginate($this->paginate);
+            return view('posts.index', compact('posts', 'category'));
+        }
+
         if ($request->search) {
             $posts = Post::join('users', 'author_id', '=', 'users.id')
                 ->where('title', 'like', '%' . $request->search . '%')
@@ -36,7 +55,7 @@ class PostController extends Controller
                 ->paginate($this->paginate);
             return view('posts.index', compact('posts'));
         }
-        // $posts = Post::all();
+
         $posts = Post::join('users', 'author_id', '=', 'users.id')
             ->orderBy('posts.created_at', 'desc')
             ->select('posts.*', 'users.*', 'posts.id as id')
@@ -149,6 +168,7 @@ class PostController extends Controller
             Str::length($request->descr) > 300 ? Str::substr($request->descr, 0, 300) . '...' : $request->descr
         );
         $post->descr = $request->descr;
+        $post->category_id = $request->category_id;
 
         if ($request->file('img')) {
             $path = Storage::putFile('public', $request->file('img'));
