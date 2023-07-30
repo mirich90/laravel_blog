@@ -1,5 +1,5 @@
 <div class="form-group">
-    <input name="title" type="text" placeholder="Заголовок поста" class="form-control" required value="{{ old('title') ??$post->title ?? '' }}">
+    <input name="title" type="text" placeholder="Заголовок поста" class="form-control" required value="{{ old('title') ?? $post->title ?? '' }}">
 </div>
 
 @if (count($categories) > 0)
