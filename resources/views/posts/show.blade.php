@@ -7,16 +7,7 @@
     <div class="col-12">
         <div class="card">
 
-            <div class="card-header">
-                <h2>{{ $post->title }}</h2>
-                <div class="card-author"><b>Автор</b>: {{ $post->name }}</div>
-                @if ($post->category)
-                    <div class="card-category"><b>Категория</b>: {{ $post->category }}</div>
-                @endif
-                <div class="card-data"><b>Дата создания</b>: {{ $post->created_at }}</div>
-                <div class="card-data"><b>Дата редактирования</b>: {{ $post->updated_at }}</div>
-                <div class="card-date">{{ $post->created_at->diffForHumans() }}</div>
-            </div>
+            @include('posts.parts.header')
 
             <div class="card-body">
                 <div class="card-img card-img__max" style="background-image: url({{ $post->img ?? asset('img/default.webp') }})"></div>
@@ -27,21 +18,21 @@
                     <a href="{{ route('post.index') }}" class="btn btn-outline-primary">На главную</a>
                     
                     @auth
-                    @if(
-                        Auth::user()->id == $post->author_id ||
-                        Auth::user()->isAdmin() ||
-                        Auth::user()->isModerator()
-                    )
-                    <a href="{{ route('post.edit', ['id'=>$post->id]) }}" class="btn btn-outline-success">Редактировать</a>
-                    
-                    <form action="{{ route('post.destroy', $post->id) }}" method="post" onsubmit="if (confirm('Точно удалить пост?')) { return true} else {return false}">
-                        @csrf
-                        @method('DELETE')
+                        @if(
+                            Auth::user()->id == $post->author_id ||
+                            Auth::user()->isAdmin() ||
+                            Auth::user()->isModerator()
+                        )
+                        <a href="{{ route('post.edit', ['id'=>$post->id]) }}" class="btn btn-outline-success">Редактировать</a>
                         
-                        <input type="submit" class="btn btn-outline-danger" value="Удалить">
-                    </form>
-                    @endif
-                    
+                        <form action="{{ route('post.destroy', $post->id) }}" method="post" onsubmit="if (confirm('Точно удалить пост?')) { return true} else {return false}">
+                            @csrf
+                            @method('DELETE')
+                            
+                            <input type="submit" class="btn btn-outline-danger" value="Удалить">
+                        </form>
+                        @endif
+                        
                     @endauth
                 </div>
             </div>
