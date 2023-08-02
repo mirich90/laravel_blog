@@ -28,5 +28,6 @@
     @include('layouts.parts.footer')
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/imageUpload.js') }}"></script>
 </body>
 </html>
