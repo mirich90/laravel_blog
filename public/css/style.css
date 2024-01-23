@@ -1,21 +1,69 @@
+:root {
+    --bg: hsl(240, 11%, 96%);
+    --card-bg: white;
+    --text1: hsl(240, 3%, 12%);
+    --text2: hsl(240, 2%, 44%);
+    --gradient: linear-gradient(
+        270deg in oklab,
+        oklch(61% 0.21 258) 0%,
+        oklch(59% 0.27 303) 50%,
+        oklch(72% 0.28 332) 100%
+    );
+    --font-family: "Nunito", sans-serif;
+    --font-size: 20px;
+    --title-size: 2.4rem;
+    --line-height: 1.6;
+    --max-width: 1600px;
+    --max-width-small: 1100px;
+}
 body {
-    background: white;
+    background: hsl(240, 11%, 96%);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    font-family: var(--font-family);
+    color: var(--text1);
 }
 nav {
     margin-bottom: 15px;
+}
+main {
+    min-height: calc(100vh - 170px);
 }
 .trix-content {
     font-size: calc(1em + 0.5vw);
     margin: 1.2rem auto;
 }
 .card {
-    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 2rem;
+    color: var(--text1);
+    text-decoration: none;
+    background-color: white;
+    border-radius: 20px;
+    overflow: clip;
+    margin-bottom: 30px;
+    border: none;
 }
-.card-img {
+.card h2 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+/* .card-img {
     height: 140px;
-    background-position: cover;
-    background-size: cover;
-    background-repeat: no-repeat;
+} */
+.card-image {
+    width: 100%;
+    height: 100%;
+}
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
 }
 .card-img__max {
     height: 500px;

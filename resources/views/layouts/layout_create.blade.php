@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
+    <title>{{ $title }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
@@ -16,18 +16,19 @@
 </head>
 
 <body>
-    
+
     @include('layouts.parts.navbar')
 
-    <div class="container">
+    <main class="container">
         @include('layouts.parts.messages.index')
 
         @yield('content')
-    </div>
-    
+    </main>
+
     @include('layouts.parts.footer')
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/imageUpload.js') }}"></script>
 </body>
+
 </html>
