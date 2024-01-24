@@ -37,7 +37,7 @@
     </div>
 
     @if (count($posts) > 0)
-        <div class="mt-4">
+        <div class="posts mt-4">
             @foreach ($posts as $post)
                 <div class="card">
 
@@ -53,9 +53,11 @@
                         <div class="d-flex justify-content-between">
                             <div class="card-author">{{ $post->name }}</div>
 
-                            <p class="card-text"><small class="text-body-secondary">
+                            <p class="card-text">
+                                <small class="text-body-secondary">
                                     {{ $post->created_at->diffForHumans() }}
-                                </small></p>
+                                </small>
+                            </p>
                         </div>
                     </div>
                 </div>
