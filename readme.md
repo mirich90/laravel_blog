@@ -11,4 +11,8 @@
 
 ### Главная страница сайта:
 
-![Alt-текст](https://github.com/mirich90/laravel_blog/blob/master/1.PNG?raw=true "Блог-платформа")
+![Alt-текст](https://github.com/mirich90/laravel_blog/blob/master/1.PNG?raw=true "Блог на Laravel")
+
+### Визуальный редактор:
+
+![Alt-текст](https://github.com/mirich90/laravel_blog/blob/master/2.PNG?raw=true "Визуальный редактор для блога на Laravel")
